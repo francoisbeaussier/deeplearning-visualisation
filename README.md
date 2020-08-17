@@ -2,8 +2,10 @@
 
 Plotting learning curves and decision boundaries.
 
-`train.py` contains the model and generates one png image per epoch
-`convert.py` takes all the images and create a gif file (30 fps, stays on last frame for 2 extra seconds) 
+- `train.py` contains the model and generates one PNG image per epoch
+- `convert.py` takes all the images and creates a GIF file (30 fps, stays on last frame longer) 
+
+Note: `gifsicle` is used to optimize the GIF and needs to be in your path
 
 ## XOR
 
