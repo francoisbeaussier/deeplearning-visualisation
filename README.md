@@ -7,4 +7,4 @@ Plotting learning curves and decision boundaries.
 
 ## XOR
 
-![Training](xor/training.gif)
+![Training](xor/training_optimized.gif)

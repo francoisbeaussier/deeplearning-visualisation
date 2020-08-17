@@ -2,6 +2,7 @@ import os
 import imageio
 
 fps = 30
+output = './xor/training.gif'
 
 png_dir = 'xor/'
 images = []
@@ -14,4 +15,8 @@ last = images[-1]
 for i in range(fps * 2):
     images.append(last)
 
-imageio.mimsave('xor/training.gif', images, fps=fps)
+imageio.mimsave(output, images, fps=fps)
+
+from pygifsicle import optimize
+
+optimize(output, './xor/training_optimized.gif', options=['--optimize=3', '-v']) # compress gif

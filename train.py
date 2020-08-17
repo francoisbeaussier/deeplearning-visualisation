@@ -84,7 +84,6 @@ def plot_graph(model, epoch, history, x_valid, y_valid):
     plt.plot(history['loss'], lw=3)
     plt.plot(history['val_loss'], lw=3)
     plt.legend(['Train loss', 'Validation loss'], fontsize=15)
-    # ax.set_xlabel('Epochs', size=15)
 
     ax = fig.add_subplot(gs[6:, :6])
     plt.plot(history['binary_accuracy'], lw=3)
@@ -100,11 +99,8 @@ def plot_graph(model, epoch, history, x_valid, y_valid):
     ax.set_yticks([-1, 0, 1])
 
     ax.set_xlabel(r'$x_1$', size=15)
-    # ax.xaxis.set_label_coords(1, -0.025)
     ax.set_ylabel(r'$x_2$', size=15)
     ax.yaxis.set_label_coords(0.05, 0.5)
-
-    # plt.tight_layout(rect=[0, 0.03, 1, 0.9])
 
     fig.suptitle('Learning XOR with Tensorflow - 3 hidden layers of 4 units each', size=18)
     plt.savefig(f'xor\\training{epoch+1:>03d}.png')
@@ -126,19 +122,15 @@ class PlotStep(tf.keras.callbacks.Callback):
         self.history['binary_accuracy'] = []
         self.history['val_binary_accuracy'] = []
 
-        self.logs.append('on_train_begin')
-
     def on_epoch_end(self, epoch, logs={}):
         
         self.logs.append(logs)
 
-        print(logs)
         self.history['loss'].append(logs.get('loss'))
         self.history['val_loss'].append(logs.get('val_loss'))
         self.history['binary_accuracy'].append(logs.get('binary_accuracy'))
         self.history['val_binary_accuracy'].append(logs.get('val_binary_accuracy'))
         
-        #print('on_epoch_end!')
         plot_graph(self.model, epoch, self.history, self.x_valid, self.y_valid)
         
 model.compile(
@@ -156,8 +148,3 @@ hist = model.fit(
     epochs=200,
     batch_size=2
 )
-
-# from mlxtend.plotting import plot_decision_regions
-
-# history = hist.history
-
